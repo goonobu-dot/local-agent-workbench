@@ -4,38 +4,66 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
-if ! command -v rg >/dev/null 2>&1; then
-  echo "ripgrep is required: brew install ripgrep"
-  exit 1
-fi
+python3 - <<'PY'
+from __future__ import annotations
 
-home_path_pattern='/'"Users"'/[A-Za-z0-9._-]+'
-github_classic_pattern='ghp_''[A-Za-z0-9_]+'
-github_fine_grained_pattern='github_pat_''[A-Za-z0-9_]+'
-openai_key_pattern='sk-''[A-Za-z0-9_-]+'
-openai_env='OPENAI_''API_KEY'
-anthropic_env='ANTHROPIC_''API_KEY'
-x_env='X_''API'
-twitter_env='TWITTER_''[A-Z_]+'
-env_key_pattern="$openai_env|$anthropic_env|$x_env|$twitter_env"
-private_key_pattern='BEGIN (RSA|OPENSSH|EC) PRIVATE KEY'
-pattern="$home_path_pattern|$github_classic_pattern|$github_fine_grained_pattern|$openai_key_pattern|$env_key_pattern|$private_key_pattern"
+import re
+import sys
+from pathlib import Path
 
-if rg -n --hidden \
-  --glob '!.git/**' \
-  --glob '!Assets/*.icns' \
-  --glob '!Assets/*.png' \
-  --glob '!Assets/*.iconset/**' \
-  "$pattern" .; then
-  echo
-  echo "Potential private data found. Review the matches above before publishing."
-  exit 1
-fi
+root = Path.cwd()
+skip_dirs = {".git", "Assets"}
+skip_suffixes = {".icns", ".png"}
+local_only_names = {".env"}
+local_only_suffixes = {".log", ".sqlite", ".sqlite3", ".db"}
 
-if find . -type f \( -name '.env' -o -name '.env.*' -o -name '*.sqlite' -o -name '*.sqlite3' -o -name '*.db' -o -name '*.log' \) | grep -q .; then
-  echo "Local-only files were found. Remove them before publishing:"
-  find . -type f \( -name '.env' -o -name '.env.*' -o -name '*.sqlite' -o -name '*.sqlite3' -o -name '*.db' -o -name '*.log' \)
-  exit 1
-fi
+patterns = [
+    re.compile("/" + r"Users/[A-Za-z0-9._-]+"),
+    re.compile("ghp" + r"_[A-Za-z0-9_]+"),
+    re.compile("github" + r"_pat_[A-Za-z0-9_]+"),
+    re.compile("sk" + r"-[A-Za-z0-9_-]+"),
+    re.compile("OPENAI" + r"_API_KEY|ANTHROPIC" + r"_API_KEY|X" + r"_API|TWITTER" + r"_[A-Z_]+"),
+    re.compile("BEGIN " + r"(RSA|OPENSSH|EC) PRIVATE KEY"),
+]
 
-echo "Public safety audit passed."
+matches: list[str] = []
+local_files: list[str] = []
+
+for path in sorted(root.rglob("*")):
+    rel = path.relative_to(root)
+    if any(part in skip_dirs for part in rel.parts):
+        continue
+    if path.is_dir():
+        continue
+
+    if path.name in local_only_names or path.suffix in local_only_suffixes or path.name.startswith(".env."):
+        local_files.append(str(rel))
+        continue
+
+    if path.suffix in skip_suffixes:
+        continue
+
+    try:
+        text = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        continue
+
+    for line_number, line in enumerate(text.splitlines(), start=1):
+        if any(pattern.search(line) for pattern in patterns):
+            matches.append(f"{rel}:{line_number}:{line}")
+
+if local_files:
+    print("Local-only files were found. Remove them before publishing:")
+    for rel in local_files:
+        print(rel)
+
+if matches:
+    print("Potential private data found. Review the matches below before publishing:")
+    for match in matches:
+        print(match)
+
+if local_files or matches:
+    sys.exit(1)
+
+print("Public safety audit passed.")
+PY

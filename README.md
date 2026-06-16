@@ -55,6 +55,12 @@ Create a reusable maintainer workflow folder before launching panes:
 AGENT_WORKBENCH_IDEA_DIR="$HOME/AgentWorkbench/Idea" ./scripts/launch_codex_tmux.sh
 ```
 
+After the panes write their notes, create a handoff summary:
+
+```bash
+./scripts/close_workflow.sh "$HOME/AgentWorkbench/Idea"
+```
+
 All panes use one shared idea folder by default:
 
 ```bash

@@ -37,3 +37,20 @@ AGENT_WORKBENCH_IDEA_DIR="$HOME/AgentWorkbench/Idea/pr-123" ./scripts/launch_cod
 4. Assign each pane the role from `pane-roles.md`.
 5. Ask panes to write concrete notes to files, not only chat responses.
 6. Merge the useful findings into the final output file.
+7. Run `./scripts/close_workflow.sh <workflow-dir>` to create `handoff-summary.md`.
+
+## Closing A Workflow
+
+`scripts/close_workflow.sh` creates a handoff summary with:
+
+- markdown file inventory
+- line and word counts
+- open checkboxes
+- empty second-level sections that still need human review
+- a suggested next step
+
+Example:
+
+```bash
+./scripts/close_workflow.sh "$HOME/AgentWorkbench/Idea/pr-123"
+```

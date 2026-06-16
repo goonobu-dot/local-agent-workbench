@@ -1,5 +1,9 @@
 # Local Agent Workbench
 
+[![CI](https://github.com/goonobu-dot/local-agent-workbench/actions/workflows/ci.yml/badge.svg)](https://github.com/goonobu-dot/local-agent-workbench/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/goonobu-dot/local-agent-workbench)](https://github.com/goonobu-dot/local-agent-workbench/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A macOS/tmux workbench for running multiple local AI-agent CLI sessions in one window.
 
 The first supported target is Codex CLI. The goal is simple: open 4, 6, or 9 agent panes against one shared workspace so you can collect ideas, compare approaches, run parallel research, and keep the resulting files in one place.
@@ -36,6 +40,12 @@ mkdir -p "$HOME/AgentWorkbench"
 git clone <your-fork-url> "$HOME/AgentWorkbench/local-agent-workbench"
 cd "$HOME/AgentWorkbench/local-agent-workbench"
 ./scripts/launch_codex_tmux.sh
+```
+
+Check your local setup without starting a workbench session:
+
+```bash
+./scripts/doctor.sh
 ```
 
 All panes use one shared idea folder by default:
@@ -83,6 +93,11 @@ See [docs/workflows.md](docs/workflows.md) for practical patterns:
 - feature discovery
 - small task mode
 - public-output safety checks
+
+See also:
+
+- [docs/oss-maintainer-use-cases.md](docs/oss-maintainer-use-cases.md)
+- [docs/showcase.md](docs/showcase.md)
 
 ## Build The macOS App
 

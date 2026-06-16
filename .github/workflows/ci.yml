@@ -11,6 +11,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install ripgrep
+        run: brew install ripgrep
       - name: Check shell syntax
         run: bash -n scripts/*.sh Tests/*.sh
       - name: Check workbench config

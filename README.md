@@ -48,6 +48,13 @@ Check your local setup without starting a workbench session:
 ./scripts/doctor.sh
 ```
 
+Create a reusable maintainer workflow folder before launching panes:
+
+```bash
+./scripts/new_workflow.sh issue-triage
+AGENT_WORKBENCH_IDEA_DIR="$HOME/AgentWorkbench/Idea" ./scripts/launch_codex_tmux.sh
+```
+
 All panes use one shared idea folder by default:
 
 ```bash
@@ -98,6 +105,7 @@ See also:
 
 - [docs/oss-maintainer-use-cases.md](docs/oss-maintainer-use-cases.md)
 - [docs/showcase.md](docs/showcase.md)
+- [docs/workflow-templates.md](docs/workflow-templates.md)
 
 ## Build The macOS App
 

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added Japanese onboarding documentation, share copy, FAQ, and OpenAI credit application notes.
+- Added `scripts/check_japanese_docs.sh` and `make japanese-docs-check` to keep Japanese docs covered by CI.
 - Added `examples/pr-review-demo`, a fictional end-to-end pull request review workflow.
 - Added `examples/release-prep-demo`, a fictional end-to-end release preparation workflow.
 - Added role-specific prompt generation for workflow panes.

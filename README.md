@@ -4,6 +4,8 @@
 [![Release](https://img.shields.io/github/v/release/goonobu-dot/local-agent-workbench)](https://github.com/goonobu-dot/local-agent-workbench/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+Japanese readers: start with [README.ja.md](README.ja.md) or the full [Japanese documentation hub](docs/ja/README.md).
+
 A macOS/tmux workbench for running multiple local AI-agent CLI sessions in one window.
 
 The first supported target is Codex CLI. The goal is simple: open 4, 6, or 9 agent panes against one shared workspace so you can collect ideas, compare approaches, run parallel research, and keep the resulting files in one place.

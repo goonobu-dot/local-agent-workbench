@@ -41,11 +41,9 @@ One-command install:
 curl -fsSL https://raw.githubusercontent.com/goonobu-dot/local-agent-workbench/main/scripts/install.sh | bash
 ```
 
-Clone or copy this repository to the default local location:
+Then launch:
 
 ```bash
-mkdir -p "$HOME/AgentWorkbench"
-git clone <your-fork-url> "$HOME/AgentWorkbench/local-agent-workbench"
 cd "$HOME/AgentWorkbench/local-agent-workbench"
 ./scripts/launch_codex_tmux.sh
 ```
@@ -81,6 +79,15 @@ All panes use one shared idea folder by default:
 
 ```bash
 ~/AgentWorkbench/Idea
+```
+
+Manual clone instead of the installer:
+
+```bash
+mkdir -p "$HOME/AgentWorkbench"
+git clone https://github.com/goonobu-dot/local-agent-workbench.git "$HOME/AgentWorkbench/local-agent-workbench"
+cd "$HOME/AgentWorkbench/local-agent-workbench"
+./scripts/doctor.sh
 ```
 
 ## Controls

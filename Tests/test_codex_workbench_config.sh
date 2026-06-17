@@ -91,6 +91,8 @@ check_contains scripts/launch_codex_tmux.sh 'AGENT_WORKBENCH_USE_ROLE_PROMPTS'
 check_contains scripts/launch_codex_tmux.sh 'ROLE_PROMPT_DIR'
 check_contains scripts/close_workflow.sh 'Workflow Handoff Summary'
 check_contains scripts/close_workflow.sh 'Empty Sections To Fill'
+check_contains scripts/close_workflow.sh 'display_workflow_dir'
+check_contains scripts/close_workflow.sh '<outside-current-directory>'
 check_contains README.md 'docs/oss-maintainer-use-cases.md'
 check_contains README.md 'docs/showcase.md'
 check_contains README.md 'docs/workflow-templates.md'
@@ -126,5 +128,14 @@ check_not_contains scripts/build_codex_app.sh 'Claude Code'
 private_home='/'"Users"'/admin'
 check_not_contains scripts/launch_codex_tmux.applescript "$private_home"
 check_not_contains README.md "$private_home"
+
+tmp_home="$(mktemp -d)"
+trap 'rm -rf "$tmp_home"' EXIT
+workflow_dir="$tmp_home/Idea/test-workflow"
+mkdir -p "$workflow_dir"
+printf '# Note\n\n## Empty\n' >"$workflow_dir/note.md"
+HOME="$tmp_home" ./scripts/close_workflow.sh "$workflow_dir" "$workflow_dir/handoff-summary.md" >/dev/null
+check_contains "$workflow_dir/handoff-summary.md" 'Workflow directory: `~/Idea/test-workflow`'
+check_not_contains "$workflow_dir/handoff-summary.md" "$tmp_home"
 
 exit "$fail"

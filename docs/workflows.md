@@ -83,9 +83,22 @@ Before sharing output from the workbench:
 - remove terminal logs that contain account names or tokens
 - keep generated findings separate from source code
 
+For a portable markdown-only bundle, use:
+
+```bash
+./scripts/export_workflow.sh "$HOME/AgentWorkbench/Idea"
+```
+
+To review a shared archive safely, use:
+
+```bash
+./scripts/import_workflow.sh ./Idea-workflow-export.tar.gz
+```
+
 Before publishing the repository itself:
 
 ```bash
-./Tests/test_codex_workbench_config.sh
-./scripts/audit_public_safety.sh
+make test
 ```
+
+See [workflow sharing](workflow-sharing.md) for the export/import safety boundaries.

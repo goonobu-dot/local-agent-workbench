@@ -81,6 +81,12 @@ After the panes write their notes, create a handoff summary:
 ./scripts/close_workflow.sh "$HOME/AgentWorkbench/Idea"
 ```
 
+Export a workflow folder for sharing:
+
+```bash
+./scripts/export_workflow.sh "$HOME/AgentWorkbench/Idea"
+```
+
 All panes use one shared idea folder by default:
 
 ```bash

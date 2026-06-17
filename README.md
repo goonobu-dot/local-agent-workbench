@@ -119,6 +119,10 @@ See also:
 - [docs/showcase.md](docs/showcase.md)
 - [docs/workflow-templates.md](docs/workflow-templates.md)
 
+Example:
+
+- [examples/issue-triage-demo](examples/issue-triage-demo)
+
 ## Build The macOS App
 
 ```bash

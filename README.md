@@ -45,6 +45,7 @@ Then launch:
 
 ```bash
 cd "$HOME/AgentWorkbench/local-agent-workbench"
+make demo
 ./scripts/launch_codex_tmux.sh
 ```
 

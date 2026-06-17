@@ -92,7 +92,16 @@ check_contains scripts/install.sh 'AGENT_WORKBENCH_INSTALL_DIR'
 check_contains scripts/install.sh 'make demo'
 check_contains scripts/install.sh 'make doctor-report'
 check_contains scripts/install.sh './scripts/new_workflow.sh --list'
+check_contains scripts/uninstall.sh 'Local Agent Workbench uninstaller'
+check_contains scripts/uninstall.sh 'AGENT_WORKBENCH_INSTALL_DIR'
+check_contains scripts/uninstall.sh 'AGENT_WORKBENCH_REMOVE_APP'
+check_contains scripts/uninstall.sh 'AGENT_WORKBENCH_REMOVE_IDEA'
+check_contains scripts/uninstall.sh 'Set AGENT_WORKBENCH_CONFIRM_UNINSTALL=1'
 check_contains Makefile 'test:'
+check_contains Makefile 'first-run:'
+check_contains Makefile 'First-run check complete'
+check_contains Makefile './scripts/doctor.sh'
+check_contains Makefile './scripts/new_workflow.sh --list --verbose'
 check_contains Makefile 'demo:'
 check_contains Makefile 'Demo workflow ready'
 check_contains Makefile 'doctor-report:'
@@ -148,6 +157,11 @@ check_contains scripts/import_workflow.sh 'Workflow import ready'
 check_contains scripts/import_workflow.sh 'workflow-manifest.json'
 check_contains scripts/import_workflow.sh 'Unsafe archive path'
 check_contains README.md 'docs/oss-maintainer-use-cases.md'
+check_contains README.md 'Install In 60 Seconds'
+check_contains README.md 'Try Without Installing'
+check_contains README.md 'Demo Preview'
+check_contains README.md 'make first-run'
+check_contains README.md 'docs/install.md'
 check_contains README.md 'docs/showcase.md'
 check_contains README.md 'Who This Is For'
 check_contains README.md 'What You Get In 5 Minutes'
@@ -156,6 +170,7 @@ check_contains README.md 'Share A Usage Report'
 check_contains README.md 'docs/why.md'
 check_contains README.md 'docs/one-minute-demo.md'
 check_contains README.md 'docs/evaluation-guide.md'
+check_contains README.md 'docs/install.md'
 check_contains README.md 'docs/commands.md'
 check_contains README.md 'docs/architecture.md'
 check_contains README.md 'docs/quality-gates.md'
@@ -219,6 +234,12 @@ check_contains docs/one-minute-demo.md './scripts/create_workflow_from_url.sh ht
 check_contains docs/one-minute-demo.md 'make demo'
 check_contains docs/one-minute-demo.md './scripts/close_workflow.sh'
 check_contains docs/one-minute-demo.md 'usage report issue template'
+check_contains docs/install.md 'Installation Guide'
+check_contains docs/install.md 'Install In 60 Seconds'
+check_contains docs/install.md 'Try Without Installing'
+check_contains docs/install.md 'make first-run'
+check_contains docs/install.md './scripts/uninstall.sh'
+check_contains docs/install.md 'AGENT_WORKBENCH_CONFIRM_UNINSTALL=1'
 check_contains docs/evaluation-guide.md 'Five-Minute Evaluation Guide'
 check_contains docs/evaluation-guide.md 'make demo'
 check_contains docs/evaluation-guide.md './scripts/doctor.sh'
@@ -395,5 +416,23 @@ check_contains "$metadata_workflow_dir/question.md" 'Title: Crash when launch pa
 check_contains "$metadata_workflow_dir/question.md" 'State: open'
 check_contains "$metadata_workflow_dir/question.md" 'Author: maintainer-example'
 check_contains "$metadata_workflow_dir/question.md" 'Body Excerpt: Opening the workbench from a folder with spaces'
+
+make first-run >/dev/null
+uninstall_root="$tmp_home/uninstall-root"
+mkdir -p "$uninstall_root/Local Agent Workbench.app" "$uninstall_root/Idea"
+AGENT_WORKBENCH_INSTALL_DIR="$uninstall_root/local-agent-workbench" \
+AGENT_WORKBENCH_APP_BUNDLE="$uninstall_root/Local Agent Workbench.app" \
+AGENT_WORKBENCH_BASE="$uninstall_root" \
+./scripts/uninstall.sh >/dev/null
+test -d "$uninstall_root/Local Agent Workbench.app" || { echo "uninstall should not remove app without confirmation"; fail=1; }
+AGENT_WORKBENCH_CONFIRM_UNINSTALL=1 \
+AGENT_WORKBENCH_INSTALL_DIR="$uninstall_root/local-agent-workbench" \
+AGENT_WORKBENCH_APP_BUNDLE="$uninstall_root/Local Agent Workbench.app" \
+AGENT_WORKBENCH_BASE="$uninstall_root" \
+AGENT_WORKBENCH_REMOVE_APP=1 \
+AGENT_WORKBENCH_REMOVE_IDEA=1 \
+./scripts/uninstall.sh >/dev/null
+test ! -d "$uninstall_root/Local Agent Workbench.app" || { echo "uninstall should remove app when requested"; fail=1; }
+test ! -d "$uninstall_root/Idea" || { echo "uninstall should remove idea dir when requested"; fail=1; }
 
 exit "$fail"

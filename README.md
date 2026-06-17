@@ -10,6 +10,31 @@ The first supported target is Codex CLI. The goal is simple: open 4, 6, or 9 age
 
 ![Local Agent Workbench terminal preview](docs/assets/workbench-preview.svg)
 
+## Install In 60 Seconds
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/goonobu-dot/local-agent-workbench/main/scripts/install.sh | bash
+cd "$HOME/AgentWorkbench/local-agent-workbench"
+make first-run
+```
+
+Full setup notes are in [docs/install.md](docs/install.md).
+
+## Try Without Installing
+
+```bash
+git clone https://github.com/goonobu-dot/local-agent-workbench.git
+cd local-agent-workbench
+./scripts/doctor.sh
+make demo
+```
+
+## Demo Preview
+
+The fastest no-risk preview is `make first-run`: it checks your machine, creates
+a temporary demo workflow, closes it into a handoff summary, and lists available
+workflow templates.
+
 ## Who This Is For
 
 - OSS maintainers who need faster issue triage, pull request review, release preparation, or security screening.
@@ -192,6 +217,7 @@ See also:
 - [docs/why.md](docs/why.md)
 - [docs/one-minute-demo.md](docs/one-minute-demo.md)
 - [docs/evaluation-guide.md](docs/evaluation-guide.md)
+- [docs/install.md](docs/install.md)
 - [docs/commands.md](docs/commands.md)
 - [docs/architecture.md](docs/architecture.md)
 - [docs/quality-gates.md](docs/quality-gates.md)

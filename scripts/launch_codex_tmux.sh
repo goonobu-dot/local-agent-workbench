@@ -11,6 +11,8 @@ AUTO_SUBMIT="${AGENT_WORKBENCH_AUTO_SUBMIT:-${CODEX_WORKBENCH_AUTO_SUBMIT:-1}}"
 TMUX_BIN="${TMUX_BIN:-/opt/homebrew/bin/tmux}"
 BASE_DIR="${AGENT_WORKBENCH_BASE:-${CODEX_WORKBENCH_BASE:-$HOME/AgentWorkbench}}"
 IDEA_DIR="${AGENT_WORKBENCH_IDEA_DIR:-${CODEX_WORKBENCH_IDEA_DIR:-$BASE_DIR/Idea}}"
+ROLE_PROMPT_DIR="${AGENT_WORKBENCH_ROLE_PROMPT_DIR:-${CODEX_WORKBENCH_ROLE_PROMPT_DIR:-$IDEA_DIR/prompts}}"
+USE_ROLE_PROMPTS="${AGENT_WORKBENCH_USE_ROLE_PROMPTS:-${CODEX_WORKBENCH_USE_ROLE_PROMPTS:-0}}"
 ATTACH="${AGENT_WORKBENCH_ATTACH:-${CODEX_WORKBENCH_ATTACH:-1}}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -63,23 +65,35 @@ pane_command() {
   local pane_number="$1"
   local pane_name="Agent $pane_number"
   local workspace="$IDEA_DIR"
+  local pane_prompt="$CODEX_PROMPT"
   local trust_flag="projects.\"$workspace\".trust_level=\"trusted\""
   local quiet_plugin_flag="plugins.\"build-web-data-visualization@openai-curated\".enabled=false"
+  local role_prompt_file="$ROLE_PROMPT_DIR/pane-$pane_number.md"
+
+  if [[ "$USE_ROLE_PROMPTS" == "1" && -f "$role_prompt_file" ]]; then
+    if [[ -n "$pane_prompt" ]]; then
+      pane_prompt="$(cat "$role_prompt_file")
+
+$pane_prompt"
+    else
+      pane_prompt="$(cat "$role_prompt_file")"
+    fi
+  fi
 
   local update_flag="check_for_update_on_startup=false"
   if [[ "$CODEX_CHECK_FOR_UPDATE" == "1" ]]; then
     update_flag="check_for_update_on_startup=true"
   fi
 
-  if [[ -n "$CODEX_MODEL" && -n "$CODEX_PROMPT" ]]; then
+  if [[ -n "$CODEX_MODEL" && -n "$pane_prompt" ]]; then
     printf 'clear; printf "\\033]0;%s\\007"; echo "%s"; echo "tmux: prefix+z zoom, prefix+4/6/9 relayout"; exec %q --disable plugins -c %q -c %q -c %q --model %q %q' \
-      "$pane_name" "$pane_name" "$CODEX_COMMAND" "$update_flag" "$trust_flag" "$quiet_plugin_flag" "$CODEX_MODEL" "$CODEX_PROMPT"
+      "$pane_name" "$pane_name" "$CODEX_COMMAND" "$update_flag" "$trust_flag" "$quiet_plugin_flag" "$CODEX_MODEL" "$pane_prompt"
   elif [[ -n "$CODEX_MODEL" ]]; then
     printf 'clear; printf "\\033]0;%s\\007"; echo "%s"; echo "tmux: prefix+z zoom, prefix+4/6/9 relayout"; exec %q --disable plugins -c %q -c %q -c %q --model %q' \
       "$pane_name" "$pane_name" "$CODEX_COMMAND" "$update_flag" "$trust_flag" "$quiet_plugin_flag" "$CODEX_MODEL"
-  elif [[ -n "$CODEX_PROMPT" ]]; then
+  elif [[ -n "$pane_prompt" ]]; then
     printf 'clear; printf "\\033]0;%s\\007"; echo "%s"; echo "tmux: prefix+z zoom, prefix+4/6/9 relayout"; exec %q --disable plugins -c %q -c %q -c %q %q' \
-      "$pane_name" "$pane_name" "$CODEX_COMMAND" "$update_flag" "$trust_flag" "$quiet_plugin_flag" "$CODEX_PROMPT"
+      "$pane_name" "$pane_name" "$CODEX_COMMAND" "$update_flag" "$trust_flag" "$quiet_plugin_flag" "$pane_prompt"
   else
     printf 'clear; printf "\\033]0;%s\\007"; echo "%s"; echo "tmux: prefix+z zoom, prefix+4/6/9 relayout"; exec %q --disable plugins -c %q -c %q -c %q' \
       "$pane_name" "$pane_name" "$CODEX_COMMAND" "$update_flag" "$trust_flag" "$quiet_plugin_flag"

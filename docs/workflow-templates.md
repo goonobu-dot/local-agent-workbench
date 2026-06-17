@@ -39,6 +39,30 @@ AGENT_WORKBENCH_IDEA_DIR="$HOME/AgentWorkbench/Idea/pr-123" ./scripts/launch_cod
 6. Merge the useful findings into the final output file.
 7. Run `./scripts/close_workflow.sh <workflow-dir>` to create `handoff-summary.md`.
 
+## Role-Specific Prompts
+
+`scripts/new_workflow.sh` also creates prompt files:
+
+```text
+prompts/
+  pane-1.md
+  pane-2.md
+  ...
+  pane-9.md
+```
+
+Each prompt is generated from `pane-roles.md`. Review these files before launch if you want to edit the role instructions.
+
+To pass the prompts to Codex CLI panes at startup:
+
+```bash
+AGENT_WORKBENCH_IDEA_DIR="$HOME/AgentWorkbench/Idea/pr-123" \
+AGENT_WORKBENCH_USE_ROLE_PROMPTS=1 \
+./scripts/launch_codex_tmux.sh
+```
+
+This is opt-in so the generated prompts remain transparent and easy to inspect.
+
 ## Closing A Workflow
 
 `scripts/close_workflow.sh` creates a handoff summary with:

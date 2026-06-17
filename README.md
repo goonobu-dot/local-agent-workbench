@@ -61,6 +61,14 @@ Create a reusable maintainer workflow folder before launching panes:
 AGENT_WORKBENCH_IDEA_DIR="$HOME/AgentWorkbench/Idea" ./scripts/launch_codex_tmux.sh
 ```
 
+Launch with role-specific prompts generated from `pane-roles.md`:
+
+```bash
+AGENT_WORKBENCH_IDEA_DIR="$HOME/AgentWorkbench/Idea" \
+AGENT_WORKBENCH_USE_ROLE_PROMPTS=1 \
+./scripts/launch_codex_tmux.sh
+```
+
 After the panes write their notes, create a handoff summary:
 
 ```bash

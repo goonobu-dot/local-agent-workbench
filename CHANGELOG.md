@@ -27,6 +27,7 @@
 - Added `./scripts/new_workflow.sh --list` for quick workflow discovery.
 - Added `examples/feature-discovery-demo`.
 - Added `make demo` for a temporary one-command workflow demo.
+- Added `SECURITY.md` with reporting and workflow-sharing safety guidance.
 
 ## v0.5.0
 

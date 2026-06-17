@@ -1,22 +1,35 @@
-# Security
+# Security Policy
 
-## Supported Versions
+Local Agent Workbench is a local macOS/tmux utility. It does not run a hosted service, collect telemetry, or require cloud credentials.
 
-This project is currently an early public release. Security fixes are accepted on the default branch.
+## Reporting Security Issues
 
-## Reporting A Vulnerability
+Open a GitHub issue if the report does not contain sensitive data. Use a private channel if the report requires unreleased exploit details or private logs.
 
-Please open a private advisory or contact the maintainer directly if you find a vulnerability.
+Do not include secrets in public issues:
 
-Do not publish:
+- API keys
+- access tokens
+- private keys
+- local absolute paths that reveal private usernames or project names
+- unpublished customer, employer, or client data
 
-- API keys or access tokens
-- local prompt histories
-- terminal logs
-- Obsidian vault contents
-- `.env` files
-- generated agent output containing personal data
+## Before Sharing Workflow Output
 
-## Local Trust Behavior
+Run the public safety audit:
 
-The Codex helper script can add the shared workbench folder to the local Codex trusted-project config. Review `scripts/trust_codex_workbench_dirs.sh` before running it if you use a custom workspace path.
+```bash
+./scripts/audit_public_safety.sh
+```
+
+For generated workflow folders, also run:
+
+```bash
+./scripts/validate_workflow.sh <workflow-dir>
+```
+
+These checks reduce common publishing mistakes. They do not prove that generated notes are factually correct or safe to publish without human review.
+
+## Local Boundary
+
+This project launches local CLI sessions and writes markdown files in local folders. Review prompts, generated notes, archives, and issue attachments before sharing them.

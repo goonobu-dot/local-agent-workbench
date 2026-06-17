@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Added `examples/pr-review-demo`, a fictional end-to-end pull request review workflow.
+- Added `examples/release-prep-demo`, a fictional end-to-end release preparation workflow.
 
 ## v0.5.0
 

@@ -125,6 +125,7 @@ Example:
 
 - [examples/issue-triage-demo](examples/issue-triage-demo)
 - [examples/pr-review-demo](examples/pr-review-demo)
+- [examples/release-prep-demo](examples/release-prep-demo)
 
 Project operations:
 

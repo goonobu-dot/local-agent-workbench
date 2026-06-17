@@ -37,6 +37,7 @@ The maintainer remains in control. The tool creates local folders, role prompts,
 - `scripts/close_workflow.sh` creates reviewable handoff summaries.
 - `examples/issue-triage-demo` shows a fictional end-to-end issue triage flow.
 - `examples/pr-review-demo` shows a fictional pull request review flow.
+- `examples/release-prep-demo` shows a fictional release preparation flow.
 - `docs/oss-maintainer-use-cases.md` maps the tool to common maintainer work.
 - `scripts/audit_public_safety.sh` checks for common private-data leaks.
 

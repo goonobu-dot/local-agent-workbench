@@ -90,6 +90,8 @@ say "Local Agent Workbench doctor"
 say
 
 check_command "tmux" "${TMUX_BIN:-tmux}" "Install tmux with Homebrew: brew install tmux"
+check_command "git" "git" "Install Git or Xcode Command Line Tools."
+check_command "python3" "python3" "Install Python 3 or Xcode Command Line Tools."
 
 if [[ -n "${AGENT_WORKBENCH_COMMAND:-${CODEX_WORKBENCH_COMMAND:-}}" ]]; then
   candidate="${AGENT_WORKBENCH_COMMAND:-${CODEX_WORKBENCH_COMMAND:-}}"

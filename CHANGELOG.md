@@ -28,6 +28,7 @@
 - Added `examples/feature-discovery-demo`.
 - Added `make demo` for a temporary one-command workflow demo.
 - Added `SECURITY.md` with reporting and workflow-sharing safety guidance.
+- Added `workflow-manifest.json` to exported workflow archives.
 
 ## v0.5.0
 

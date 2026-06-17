@@ -6,6 +6,7 @@
 - Added `examples/release-prep-demo`, a fictional end-to-end release preparation workflow.
 - Added role-specific prompt generation for workflow panes.
 - Improved first-run diagnostics with actionable setup recommendations.
+- Added a README terminal preview SVG for first-time visitors.
 
 ## v0.5.0
 

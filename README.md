@@ -8,6 +8,8 @@ A macOS/tmux workbench for running multiple local AI-agent CLI sessions in one w
 
 The first supported target is Codex CLI. The goal is simple: open 4, 6, or 9 agent panes against one shared workspace so you can collect ideas, compare approaches, run parallel research, and keep the resulting files in one place.
 
+![Local Agent Workbench terminal preview](docs/assets/workbench-preview.svg)
+
 ## Why This Exists
 
 AI agents are useful, but one chat window is often too narrow for exploration. This workbench gives you a repeatable local setup for:

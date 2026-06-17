@@ -33,6 +33,12 @@ brew install tmux
 
 ## Quick Start
 
+One-command install:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/goonobu-dot/local-agent-workbench/main/scripts/install.sh | bash
+```
+
 Clone or copy this repository to the default local location:
 
 ```bash

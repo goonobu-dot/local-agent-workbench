@@ -32,8 +32,10 @@ sign_app() {
 
 rm -rf "$APP_BUNDLE"
 mkdir -p "$(dirname "$APP_BUNDLE")"
-python3 "$ROOT_DIR/scripts/create_codex_icon.py" >/dev/null
-iconutil -c icns "$ROOT_DIR/Assets/$ICON_NAME.iconset" -o "$ICON_FILE"
+if [[ "${AGENT_WORKBENCH_REGENERATE_ICON:-0}" == "1" || ! -f "$ICON_FILE" ]]; then
+  python3 "$ROOT_DIR/scripts/create_codex_icon.py" >/dev/null
+  iconutil -c icns "$ROOT_DIR/Assets/$ICON_NAME.iconset" -o "$ICON_FILE"
+fi
 osacompile -o "$APP_BUNDLE" "$SCRIPT_PATH"
 cp "$ICON_FILE" "$APP_BUNDLE/Contents/Resources/$ICON_NAME.icns"
 /usr/libexec/PlistBuddy -c "Set :CFBundleName Local Agent Workbench" "$APP_BUNDLE/Contents/Info.plist"

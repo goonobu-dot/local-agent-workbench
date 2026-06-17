@@ -230,6 +230,7 @@ See also:
 - [docs/install.md](docs/install.md)
 - [docs/demo-transcript.md](docs/demo-transcript.md)
 - [docs/adoption-scorecard.md](docs/adoption-scorecard.md)
+- [docs/continuous-improvement-loops.md](docs/continuous-improvement-loops.md)
 - [docs/commands.md](docs/commands.md)
 - [docs/architecture.md](docs/architecture.md)
 - [docs/quality-gates.md](docs/quality-gates.md)

@@ -26,6 +26,7 @@
 - Added `scripts/validate_workflow.sh` for pre-export workflow checks.
 - Added `./scripts/new_workflow.sh --list` for quick workflow discovery.
 - Added `examples/feature-discovery-demo`.
+- Added `make demo` for a temporary one-command workflow demo.
 
 ## v0.5.0
 

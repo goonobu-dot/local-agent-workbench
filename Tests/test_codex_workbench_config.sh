@@ -86,6 +86,8 @@ check_contains scripts/doctor.sh 'Doctor report written to:'
 check_contains scripts/install.sh 'Local Agent Workbench installer'
 check_contains scripts/install.sh 'AGENT_WORKBENCH_INSTALL_DIR'
 check_contains Makefile 'test:'
+check_contains Makefile 'demo:'
+check_contains Makefile 'Demo workflow ready'
 check_contains Makefile './Tests/test_codex_workbench_config.sh'
 check_contains Makefile './scripts/audit_public_safety.sh'
 check_contains scripts/new_workflow.sh 'issue-triage'
@@ -157,6 +159,7 @@ check_contains docs/showcase.md 'scripts/create_workflow_from_url.sh'
 check_contains docs/showcase.md 'GitHub issue or pull request URL'
 check_contains docs/one-minute-demo.md 'One-Minute Demo'
 check_contains docs/one-minute-demo.md './scripts/create_workflow_from_url.sh https://github.com/owner/repo/issues/123'
+check_contains docs/one-minute-demo.md 'make demo'
 check_contains docs/one-minute-demo.md './scripts/close_workflow.sh'
 check_contains docs/one-minute-demo.md 'usage report issue template'
 check_contains docs/workflows.md 'make test'
@@ -221,6 +224,7 @@ check_contains "$doctor_report" '```text'
 
 ./scripts/new_workflow.sh --list | grep -Fq 'issue-triage' || { echo "workflow list missing issue-triage"; fail=1; }
 ./scripts/new_workflow.sh --list | grep -Fq 'feature-discovery' || { echo "workflow list missing feature-discovery"; fail=1; }
+make demo >/dev/null
 
 export_dir="$tmp_home/Idea/export-workflow"
 mkdir -p "$export_dir/prompts"

@@ -104,6 +104,8 @@ check_contains scripts/recommend_workflow.sh 'Recommended Workflow'
 check_contains scripts/recommend_workflow.sh 'issue-triage'
 check_contains scripts/recommend_workflow.sh 'examples/security-triage-demo'
 check_contains scripts/recommend_workflow.sh 'AGENT_WORKBENCH_IDEA_DIR'
+check_contains scripts/check_adoption_scorecard.sh 'Expected 50 adoption loops'
+check_contains scripts/check_adoption_scorecard.sh 'Loop 50'
 check_contains Makefile 'test:'
 check_contains Makefile 'recommend:'
 check_contains Makefile './scripts/recommend_workflow.sh'
@@ -174,6 +176,7 @@ check_contains README.md 'Demo Preview'
 check_contains README.md 'make first-run'
 check_contains README.md 'docs/install.md'
 check_contains README.md 'docs/demo-transcript.md'
+check_contains README.md 'docs/adoption-scorecard.md'
 check_contains README.md './scripts/recommend_workflow.sh'
 check_contains README.md 'docs/showcase.md'
 check_contains README.md 'Who This Is For'
@@ -254,6 +257,9 @@ check_contains docs/install.md 'make first-run'
 check_contains docs/install.md './scripts/uninstall.sh'
 check_contains docs/install.md 'AGENT_WORKBENCH_CONFIRM_UNINSTALL=1'
 check_contains docs/install.md 'docs/demo-transcript.md'
+check_contains docs/adoption-scorecard.md 'Adoption Scorecard'
+check_contains docs/adoption-scorecard.md 'Loop 01'
+check_contains docs/adoption-scorecard.md 'Loop 50'
 check_contains docs/demo-transcript.md 'Local Agent Workbench Demo Transcript'
 check_contains docs/demo-transcript.md 'make first-run'
 check_contains docs/demo-transcript.md 'Workflow Handoff Summary'
@@ -436,6 +442,7 @@ check_contains "$metadata_workflow_dir/question.md" 'Body Excerpt: Opening the w
 
 make first-run >/dev/null
 make demo-transcript >/dev/null
+./scripts/check_adoption_scorecard.sh >/dev/null
 check_contains docs/demo-transcript.md 'Local Agent Workbench Demo Transcript'
 ./scripts/recommend_workflow.sh issue | grep -Fq 'issue-triage' || { echo "issue recommendation missing issue-triage"; fail=1; }
 ./scripts/recommend_workflow.sh security | grep -Fq 'examples/security-triage-demo' || { echo "security recommendation missing demo"; fail=1; }

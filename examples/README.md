@@ -11,6 +11,7 @@ Examples show what the workbench produces when used for real maintainer-style ta
 - [security-triage-demo](security-triage-demo) - a fictional report triage workflow that separates impact, exploitability, and safe disclosure notes.
 - [docs-improvement-demo](docs-improvement-demo) - a fictional documentation improvement workflow that turns user confusion into an edit plan.
 - [dependency-update-demo](dependency-update-demo) - a fictional dependency update review workflow that separates compatibility, testing, and release risk.
+- [codex-for-oss-reviewer-walkthrough](codex-for-oss-reviewer-walkthrough) - a short reviewer-oriented path showing how to evaluate the project for Codex-assisted OSS maintenance.
 
 ## Why Examples Matter
 

@@ -99,6 +99,7 @@ For a fast external review, use:
 
 - [Reviewer quick check](docs/reviewer-quick-check.md)
 - [Recent improvements](docs/recent-improvements.md)
+- [External research notes](docs/external-research-notes.md)
 - [Codex for OSS reviewer walkthrough](examples/codex-for-oss-reviewer-walkthrough)
 
 ## Why This Exists
@@ -178,6 +179,12 @@ After the panes write their notes, create a handoff summary:
 
 ```bash
 ./scripts/close_workflow.sh "$HOME/AgentWorkbench/Idea"
+```
+
+Check workflow status before sharing or closing:
+
+```bash
+./scripts/workflow_status.sh "$HOME/AgentWorkbench/Idea"
 ```
 
 Export a workflow folder for sharing:

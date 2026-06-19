@@ -32,7 +32,7 @@ cd local-agent-workbench
 make demo
 ```
 
-If you only want to inspect expected output, read [docs/demo-transcript.md](demo-transcript.md) and the reviewer walkthrough in [examples/codex-for-oss-reviewer-walkthrough](../examples/codex-for-oss-reviewer-walkthrough).
+If you only want to inspect expected output, read [docs/demo-transcript.md](demo-transcript.md), the reviewer walkthrough in [examples/codex-for-oss-reviewer-walkthrough](../examples/codex-for-oss-reviewer-walkthrough), and the terminal transcript at [examples/codex-for-oss-reviewer-walkthrough/terminal-transcript.md](../examples/codex-for-oss-reviewer-walkthrough/terminal-transcript.md).
 
 ## What good evidence looks like
 

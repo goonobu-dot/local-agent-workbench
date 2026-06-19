@@ -6,9 +6,10 @@ This walkthrough helps a reviewer evaluate Local Agent Workbench as a Codex-assi
 
 1. [Reviewer Notes](reviewer-notes.md)
 2. [Expected Evidence](expected-evidence.md)
-3. [Issue triage demo](../issue-triage-demo/final-triage.md)
-4. [PR review demo](../pr-review-demo/final-review.md)
-5. [Release prep demo](../release-prep-demo/release-checklist.md)
+3. [Reviewer Terminal Transcript](terminal-transcript.md)
+4. [Issue triage demo](../issue-triage-demo/final-triage.md)
+5. [PR review demo](../pr-review-demo/final-review.md)
+6. [Release prep demo](../release-prep-demo/release-checklist.md)
 
 ## Why this exists
 

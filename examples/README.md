@@ -12,6 +12,7 @@ Examples show what the workbench produces when used for real maintainer-style ta
 - [docs-improvement-demo](docs-improvement-demo) - a fictional documentation improvement workflow that turns user confusion into an edit plan.
 - [dependency-update-demo](dependency-update-demo) - a fictional dependency update review workflow that separates compatibility, testing, and release risk.
 - [codex-for-oss-reviewer-walkthrough](codex-for-oss-reviewer-walkthrough) - a short reviewer-oriented path showing how to evaluate the project for Codex-assisted OSS maintenance.
+- [usage-reports](usage-reports) - public-safe reports that record what a workflow produced and what slowed the user down.
 
 ## Why Examples Matter
 

@@ -90,6 +90,11 @@ If the workbench helps you make a real maintenance decision, open a
 [usage report](.github/ISSUE_TEMPLATE/usage_report.yml). Short reports are
 useful: the workflow used, what it produced, and where the setup was confusing.
 
+## Codex For Open Source
+
+This project is maintained as a practical Codex-assisted OSS workflow experiment.
+The updated application notes are in [docs/CODEX_FOR_OSS_REAPPLICATION.md](docs/CODEX_FOR_OSS_REAPPLICATION.md).
+
 ## Why This Exists
 
 AI agents are useful, but one chat window is often too narrow for exploration. This workbench gives you a repeatable local setup for:

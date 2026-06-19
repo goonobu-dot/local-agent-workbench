@@ -11,6 +11,9 @@ The recent focus is first-time user onboarding, reviewer evidence, and safer pub
 | Beginner onboarding | Added beginner-friendly guides in English and Japanese. | A first-time visitor can understand the project before running commands. |
 | First-time user onboarding | Added Start Here and Use Cases pages. | Users can choose the shortest path for their situation. |
 | Reviewer path | Added reviewer quick check and Codex for OSS walkthrough. | External reviewers can evaluate the project quickly. |
+| Terminal transcript | Added a reviewer terminal transcript. | Reviewers can see the safe clone-to-demo path before running commands. |
+| Usage report | Added a public-safe usage report example. | The project now shows what the workflow produced and what friction it revealed. |
+| Case study | Added a public-safe maintainer decision case study. | Readers can see maintainer question, pane roles, final decision, and verification commands. |
 | Reapplication notes | Added Codex for OSS reapplication notes. | The public repository documents how the project maps to OSS maintenance work. |
 | Safety | Public safety audit runs in release checks. | Shared examples should not leak local paths or secrets. |
 | CI | GitHub Actions runs validation and installer smoke tests. | Changes are verified after push. |

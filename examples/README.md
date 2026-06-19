@@ -13,6 +13,7 @@ Examples show what the workbench produces when used for real maintainer-style ta
 - [dependency-update-demo](dependency-update-demo) - a fictional dependency update review workflow that separates compatibility, testing, and release risk.
 - [codex-for-oss-reviewer-walkthrough](codex-for-oss-reviewer-walkthrough) - a short reviewer-oriented path showing how to evaluate the project for Codex-assisted OSS maintenance.
 - [usage-reports](usage-reports) - public-safe reports that record what a workflow produced and what slowed the user down.
+- [case-studies](case-studies) - public-safe case studies that show maintainer questions, pane roles, decisions, and verification commands.
 
 ## Why Examples Matter
 

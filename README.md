@@ -112,6 +112,7 @@ For a fast external review, use:
 - [Reviewer quick check](docs/reviewer-quick-check.md)
 - [Recent improvements](docs/recent-improvements.md)
 - [External research notes](docs/external-research-notes.md)
+- [Public AI workflow portfolio](docs/public-ai-workflow-portfolio.md)
 - [Codex for OSS reviewer walkthrough](examples/codex-for-oss-reviewer-walkthrough)
 
 ## Why This Exists

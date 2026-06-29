@@ -21,6 +21,13 @@ Related repositories:
 - https://github.com/goonobu-dot/claude-code-workbench
 - https://github.com/goonobu-dot/ai-automation-starter-kit
 
+Reviewer portfolio note:
+
+- [Public AI workflow portfolio](public-ai-workflow-portfolio.md) explains how
+  the related repositories support the primary Codex for OSS application without
+  replacing the main focus on `local-agent-workbench`. From the repository
+  root, this file is `docs/public-ai-workflow-portfolio.md`.
+
 ## Required Personal Fields
 
 - Last name: enter manually
